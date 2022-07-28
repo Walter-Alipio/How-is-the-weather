@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-fundo bg-no-repeat bg-cover bg-center font-montserrat;
+}
