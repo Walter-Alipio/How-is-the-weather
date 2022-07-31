@@ -9,6 +9,10 @@ module.exports = {
       fontFamily: {
         montserrat: "Montserrat, sans-serif",
       },
+      colors: {
+        placeholder: "#6AA2D1",
+        toggleBG: "rgba(28, 36, 40, 0.49)",
+      },
     },
   },
   plugins: [],
