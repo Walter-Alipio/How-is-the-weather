@@ -13,6 +13,9 @@ module.exports = {
         placeholder: "#6AA2D1",
         toggleBG: "rgba(28, 36, 40, 0.49)",
       },
+      boxShadow: {
+        shadowDropDown: "0px 4px 4px rgba(106, 162, 209, 0.8)",
+      },
     },
   },
   plugins: [],
