@@ -1,18 +1,22 @@
 import { Outlet } from "react-router-dom";
-import { IUnit } from "../routes";
+import { ILanguage, IUnit } from "../routes";
+import Footer from "./Footer";
 import Header from './Header'
 
 interface Props {
-   setUnit:  React.Dispatch<React.SetStateAction<IUnit>>
+   setUnit:  React.Dispatch<React.SetStateAction<IUnit>>,
+   setLang: React.Dispatch<React.SetStateAction<ILanguage>>,
+   lang: ILanguage
 }
 
-export default function AccessPage({setUnit}: Props){
+export default function AccessPage({setUnit, setLang, lang}: Props){
   return (
     <>
       <Header setUnit={setUnit}/>
-      <main className='h-[calc(100vh-2.75rem)] flex items-center justify-center p-5'>
+      <main className='h-[calc(100vh-7rem)] flex items-center justify-center p-5'>
         <Outlet />
       </main>
+      <Footer setLang={setLang} lang={lang}/>
     </>
   );
 }
