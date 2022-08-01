@@ -6,6 +6,9 @@ module.exports = {
       backgroundImage: {
         fundo: "url(/src/assets/background/sky.png)",
       },
+      backgroundColor: {
+        input: "rgba(255, 255, 255, 0.77)",
+      },
       fontFamily: {
         montserrat: "Montserrat, sans-serif",
       },
