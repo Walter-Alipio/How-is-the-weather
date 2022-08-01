@@ -5,23 +5,22 @@ import PlacesAutocomplete, {
   geocodeByPlaceId,
   getLatLng,
 } from 'react-places-autocomplete';
+import { ICoordinate } from '../routes';
 
 interface Props {
-  setCity: React.Dispatch<React.SetStateAction<string>>
+  setCity: React.Dispatch<React.SetStateAction<string>>,
+  coordinate: {
+    lat: number,
+    lng: number
+  },
+   setCoordinate: React.Dispatch<React.SetStateAction<ICoordinate>>
 }
 
-interface ICoordinate extends google.maps.LatLngLiteral{
-  lat: number,
-  lng: number
-}
-
-export default function Home({ setCity }: Props){
+export default function Home({ setCity,coordinate,setCoordinate }: Props){
   const navigate = useNavigate();
-  const [address, setAddress] = useState(' ');
-  const [coordinate, setCoordinate] = useState({
-    lat: 0,
-    lng: 0
-  })
+  const [address, setAddress] = useState('');
+  const [error, setError] = useState('')
+ 
 
   //inserindo script com url da api google 
   // const API_KEY = import.meta.env.VITE_GOOGLE_URL;
@@ -37,24 +36,25 @@ export default function Home({ setCity }: Props){
     setAddress(value.split(',')[0]);
     setCoordinate(latlng);
     setCity(address);
-    console.log(latlng);
-    console.log(value.split(','));
+    setError('');
+    navigate('clima');
   };
 
-  function handleEvent(event: React.ChangeEvent<HTMLInputElement>){
-    event.preventDefault;
-    setCity(event.target.value);
-    navigate('clima')
-  }
+  const onError = (status: string, clearSuggestions: Function) => {
+  console.log('Google Maps API returned error with status: ', status);
+  setError(status)
+  clearSuggestions()
+}
 
   return(
     <section className="flex flex-col items-center gap-5 max-w-[44375rem]">
-      <h1 className="text-white font-bold text-3xl text-center">Como está o tempo hoje?</h1>
+      <h1 className="text-white font-bold text-3xl md:text-[2.6875rem] text-center">Como está o tempo hoje?</h1>
       <PlacesAutocomplete
         value={address}
         onChange={setAddress}
         onSelect={handleSelect}
         searchOptions={{ types: ['locality', 'country'] }}
+        onError={onError}
       >
         {(
           {
@@ -71,11 +71,11 @@ export default function Home({ setCity }: Props){
                 className:"w-full h-12 rounded-xl p-4 placeholder:text-placeholder text-placeholder outline-none"
               }
             )} />
-            <div className={`absolute w-full rounded-b-xl top-9 bg-white border-t-2 border-inherit shadow-shadowDropDown ${suggestions.length > 0 ? 'block': 'hidden'}`}>
+            <div className={`absolute w-full rounded-b-xl top-9 bg-input border-t-2 border-inherit shadow-shadowDropDown ${suggestions.length > 0 ? 'block': 'hidden'}`}>
               { loading ? <div>...Loading</div>: null}
               {suggestions.map((suggestion,i)=>{
-                console.log(suggestion)
-                                const style = {
+            
+                  const style = {
                   backgroundColor: suggestion.active ? '#41b6e5' : '',
                   padding:'1rem'
                 }
@@ -89,18 +89,7 @@ export default function Home({ setCity }: Props){
           </div>
         )}
       </PlacesAutocomplete>
-          <p>Latitude: {coordinate.lat}</p>
-          <p>Longitude: {coordinate.lng}</p>
-      {/* <input type="text" 
-        name="city" 
-        id="city"
-        aria-label='Nome da cidade' 
-        placeholder="Digite o nome da cidade"
-        onBlur={(event)=>{handleEvent(event)}}
-        className="w-full h-12 rounded-xl p-4 placeholder:text-placeholder text-placeholder"
-        
-      />   */}
-
+      <p className='text-red-600 font-semibold'>{error}</p>
     </section>
   )
 }
