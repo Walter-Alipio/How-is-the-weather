@@ -1,10 +1,16 @@
 import { useState } from "react";
+import { IUnit } from "../routes";
 
-export default function Toggle(){
+interface Props {
+   setUnit:  React.Dispatch<React.SetStateAction<IUnit>>
+}
+
+export default function Toggle({setUnit}: Props){
   const [ check, setCheck ] = useState(false);
 
   const handleCheck = () => {
-    setCheck(prevState => !prevState)
+    setCheck(prevState => !prevState);
+    check ? setUnit({unit:'imperial'}) : setUnit({unit:'metric'});
   }
 
   return (

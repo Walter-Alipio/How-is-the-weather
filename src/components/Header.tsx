@@ -1,9 +1,14 @@
 /// <reference types="vite-plugin-svgr/client" />
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as ArrowLeft } from '../assets/icons/arrowLeft.svg';
+import { IUnit } from '../routes';
 import Toggle from './Toggle';
 
-export default function Header(){
+interface Props {
+   setUnit:  React.Dispatch<React.SetStateAction<IUnit>>
+}
+
+export default function Header({setUnit}: Props){
 
   const navigate = useNavigate();
 
@@ -24,7 +29,7 @@ export default function Header(){
       </button>
       : ''
     }
-    <Toggle />
+    <Toggle setUnit={setUnit} />
   </header>
   )
 }
