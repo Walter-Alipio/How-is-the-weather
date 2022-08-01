@@ -35,9 +35,10 @@ export default function Home({ setCity,coordinate,setCoordinate }: Props){
     const latlng = await getLatLng(result[0]);
     setAddress(value.split(',')[0]);
     setCoordinate(latlng);
-    setCity(address);
+
+    setCity(value.split(',')[0]);
     setError('');
-    navigate('clima');
+    if(error === '') navigate('clima');
   };
 
   const onError = (status: string, clearSuggestions: Function) => {
