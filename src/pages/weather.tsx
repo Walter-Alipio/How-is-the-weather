@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { ICoordinate, IUnit } from "../routes";
+import { ICoordinate, ILanguage, IUnit } from "../routes";
 
 interface Props {
   city: string;
   unit: IUnit;
   coordinate: ICoordinate;
+  lang: ILanguage
 }
 
-export default function Weather({ city, unit, coordinate }: Props){
+export default function Weather({ city, unit, coordinate, lang }: Props){
 
   
   const [weather,setWeather] = useState<string>('');
@@ -16,10 +17,11 @@ export default function Weather({ city, unit, coordinate }: Props){
   const [minTemp,setMinTemp] = useState<number>(0);
   const [icon, setIcon] = useState('')
 
-  const units = unit.unit
+  const units = unit.unit;
+  const language = lang.lang;
   const API_KEY = import.meta.env.VITE_WEATHER_KEY;
   
-  const url =`http://api.openweathermap.org/data/3.0/onecall?lat=${coordinate.lat}&lon=${coordinate.lng}&units=${units}&appid=${API_KEY}&lang=pt_br`
+  const url =`http://api.openweathermap.org/data/3.0/onecall?lat=${coordinate.lat}&lon=${coordinate.lng}&units=${units}&appid=${API_KEY}&lang=${language}`
   
   console.log(units)
   useEffect(()=>{
@@ -35,7 +37,7 @@ export default function Weather({ city, unit, coordinate }: Props){
       console.log(new Date(res.daily[1].dt))
     }
     getWeather();
-  },[unit])
+  },[unit, lang])
 
   return (
     <section className="flex flex-col items-center gap-1 max-w-[44.375rem] md:min-w-[40rem] text-white">

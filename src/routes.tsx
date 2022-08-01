@@ -42,7 +42,8 @@ export default function AppRoutes(){
             <Home 
               setCity={setCity}
               coordinate={coordinate}
-              setCoordinate={setCoordinate} 
+              setCoordinate={setCoordinate}
+              lang={lang} 
             />} 
           />
 
@@ -51,6 +52,7 @@ export default function AppRoutes(){
               city={city}
               unit={unit}
               coordinate={coordinate}
+              lang={lang}
             />} 
           />
           <Route path='*' element={<NotFound />} />
