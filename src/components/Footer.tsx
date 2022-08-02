@@ -10,7 +10,7 @@ interface Props {
 
 export default function Footer({setLang, lang}: Props){
   return(
-    <footer className="w-full flex flex-col items-center bottom-0 pb-6">
+    <footer className="w-full flex flex-col items-center bottom-0 pb-6 text-white">
       <section className='flex items-center gap-3'>
         <button onClick={()=>setLang({
           language:'Português',
