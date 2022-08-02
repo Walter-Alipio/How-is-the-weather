@@ -23,3 +23,7 @@ O intuito desse desafio é identificar o clima da cidade pesquisada através do 
 ### Tecnologias utilizadas
 
 Reactjs | Tailwindcss | Typescript
+
+### Deploy
+
+[Como está o tempo hoje?](https://desafio-pratico-letras.vercel.app/)
