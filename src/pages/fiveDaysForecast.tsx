@@ -40,7 +40,7 @@ export default function FiveDaysForecast ({ city, fiveDaysForecast, unit,coordin
         }
       });
       setFiveDaysForecast(forcastArray);
-      console.log(fiveDaysForecast); 
+      //console.log(fiveDaysForecast); 
     }
     getFiveDaysWeather();
   },[unit,lang])
@@ -71,7 +71,7 @@ export default function FiveDaysForecast ({ city, fiveDaysForecast, unit,coordin
                   }).join('').replace('.','')
                 }`
               }</p>
-              <img src={`http://openweathermap.org/img/wn/${day.icon}@2x.png`} alt="" 
+              <img src={`https://openweathermap.org/img/wn/${day.icon}@2x.png`} alt="" 
                 className="w-5 h-5 md:w-10 md:h-10"
               />
               <span>{`${day.dayMin}°`}</span>

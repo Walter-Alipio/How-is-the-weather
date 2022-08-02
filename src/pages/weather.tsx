@@ -43,7 +43,7 @@ export default function Weather({ city, unit, coordinate, lang }: Props){
       <div className="flex items-center">
         <span className="text-5xl md:text-6xl">{temp}°</span>
         {icon !== '' ? 
-          <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt="" 
+          <img src={`https://openweathermap.org/img/wn/${icon}@2x.png`} alt="" 
           
             className="w-14 h-14 md:w-24 md:h-24"
           />

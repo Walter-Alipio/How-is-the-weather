@@ -20,7 +20,7 @@ export default function AppRoutes(){
     lng: 0
   });
   const [fiveDaysForecast, setFiveDaysForecast] = useState<IFiveDaysForecast[]>([]);
-  console.log(city, coordinate, unit, lang, fiveDaysForecast);
+ // console.log(city, coordinate, unit, lang, fiveDaysForecast);
 
   return (
     <BrowserRouter>
