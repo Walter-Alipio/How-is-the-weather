@@ -8,7 +8,7 @@ module.exports = {
         line: "url(/src/assets/icons/Line.png)",
       },
       backgroundColor: {
-        input: "rgba(255, 255, 255, 0.77)",
+        input: "rgba(255, 255, 255)",
       },
       fontFamily: {
         montserrat: "Montserrat, sans-serif",
@@ -19,6 +19,9 @@ module.exports = {
       },
       boxShadow: {
         shadowDropDown: "0px 4px 4px rgba(106, 162, 209, 0.8)",
+      },
+      gridTemplateColumns: {
+        listWeather: "1.5fr repeat(2, auto)1.5fr auto 1.5fr",
       },
     },
   },

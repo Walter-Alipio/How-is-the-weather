@@ -25,7 +25,7 @@ export default function Header({setUnit}: Props){
         title='Voltar'
         className='order-2'
       >
-        <ArrowLeft /> 
+        <ArrowLeft className='hover:fill-slate-500 fill-white'/> 
       </button>
       : ''
     }

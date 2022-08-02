@@ -34,7 +34,7 @@ export default function Home({ setCity, coordinate, setCoordinate, lang }: Props
 
   const onError = (status: string, clearSuggestions: Function) => {
   console.log('Google Maps API returned error with status: ', status);
-  setError(status)
+  setError(`Ocorreu um erro com sua busca: ${status}`)
   clearSuggestions()
   }
 
@@ -42,7 +42,7 @@ export default function Home({ setCity, coordinate, setCoordinate, lang }: Props
     lang.lang === 'en' ? "Enter the city name" : "Introduzca el nombre de la ciudad" ;
 
   return(
-    <section className="flex flex-col items-center gap-5 max-w-[44375rem]">
+    <section className="flex flex-col items-center gap-5 max-w-[44.375rem]">
 
       <h1 className="text-white font-bold text-3xl md:text-[2.6875rem] text-center">
         {
@@ -70,15 +70,16 @@ export default function Home({ setCity, coordinate, setCoordinate, lang }: Props
             <input {...getInputProps(
               {
                 placeholder: placeholder,
-                className:"w-full h-12 rounded-xl p-4 placeholder:text-placeholder text-placeholder outline-none"
+                className:"w-full h-12 rounded-xl p-4 placeholder:text-placeholder text-placeholder outline-none bg-input"
               }
             )} />
             <div className={`absolute w-full rounded-b-xl top-9 bg-input border-t-2 border-inherit shadow-shadowDropDown ${suggestions.length > 0 ? 'block': 'hidden'}`}>
-              { loading ? <div>...Loading</div>: null}
+              { loading ? <div className='text-center'>...Loading</div>: null}
               {suggestions.map((suggestion,i)=>{
             
                   const style = {
-                  backgroundColor: suggestion.active ? '#41b6e5' : '',
+                  color: suggestion.active ? '#D2B3C1' : '',
+                  cursor: 'pointer',
                   padding:'1rem'
                 }
                 return <div {...getSuggestionItemProps(suggestion,
