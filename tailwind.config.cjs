@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         fundo: "url(/src/assets/background/sky.png)",
+        line: "url(/src/assets/icons/Line.png)",
       },
       backgroundColor: {
         input: "rgba(255, 255, 255, 0.77)",
