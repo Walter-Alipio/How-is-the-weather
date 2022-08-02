@@ -1,37 +1,12 @@
 import { useState } from 'react';
 import { BrowserRouter, Route, Routes} from 'react-router-dom';
 import AccessPage from './components/Access';
+import { ICoordinate, IFiveDaysForecast, ILanguage, IUnit } from './types/interfaces';
 import FiveDaysForecast from './pages/fiveDaysForecast';
 import Home from './pages/home';
 import NotFound from './pages/notFound';
 import Weather from './pages/weather';
 
-
-export interface IUnit {
-  unit: 'imperial' | 'metric'
-}
-
-export interface ICoordinate extends google.maps.LatLngLiteral{
-  lat: number,
-  lng: number
-}
-
-export interface ILanguage {
-  language: 'Português' | 'English' | 'Español',
-  lang: 'pt_br' | 'en' | 'es'
-}
-
-export interface IFiveDaysForecast{
-  dayName: {
-    day: string,
-    week: string,
-    month: string,
-  },
-  icon: string,
-  dayMax: Number,
-  dayMin: Number,
-  description: string
-}
 
 export default function AppRoutes(){
   const [city, setCity] = useState('');
@@ -67,14 +42,16 @@ export default function AppRoutes(){
               unit={unit}
               coordinate={coordinate}
               lang={lang}
-              fiveDaysForecast={fiveDaysForecast}
-              setFiveDaysForecast={setFiveDaysForecast}
             />} 
           />
           <Route path='5dias' element={
             <FiveDaysForecast 
               city={city} 
+              unit={unit}
+              lang={lang}
+              coordinate={coordinate}
               fiveDaysForecast={fiveDaysForecast}
+              setFiveDaysForecast={setFiveDaysForecast}
             />
           }/>
           <Route path='*' element={<NotFound />} />

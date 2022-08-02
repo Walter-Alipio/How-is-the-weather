@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ICoordinate, IFiveDaysForecast, ILanguage, IUnit } from "../routes";
+import { ICoordinate, ILanguage, IUnit } from "../types/interfaces";
+
+import { urlAPI } from "../utils/Url";
 
 interface Props {
   city: string;
   unit: IUnit;
   coordinate: ICoordinate;
   lang: ILanguage;
-  fiveDaysForecast: IFiveDaysForecast[];
-  setFiveDaysForecast: React.Dispatch<React.SetStateAction<IFiveDaysForecast[]>>
 }
 
-export default function Weather({ city, unit, coordinate, lang, fiveDaysForecast, setFiveDaysForecast }: Props){
+export default function Weather({ city, unit, coordinate, lang }: Props){
 
   
   const [weather,setWeather] = useState<string>('');
@@ -20,16 +20,10 @@ export default function Weather({ city, unit, coordinate, lang, fiveDaysForecast
   const [minTemp,setMinTemp] = useState<number>(0);
   const [icon, setIcon] = useState('');
 
-  //montando url da api openweather
-  const units = unit.unit;
-  const language = lang.lang;
-  const API_KEY = import.meta.env.VITE_WEATHER_KEY;
-
-  const url =`http://api.openweathermap.org/data/3.0/onecall?lat=${coordinate.lat}&lon=${coordinate.lng}&units=${units}&appid=${API_KEY}&lang=${language}`
+  const url = urlAPI({unit,coordinate,lang});
   
-  console.log(units)
   useEffect(()=>{
-    const getWeather =async () => {
+    const getWeather = async () => {
       const res = await fetch(url).then(data => data.json()).catch(err=>console.log(err));
 
       // console.log(res);
@@ -38,29 +32,6 @@ export default function Weather({ city, unit, coordinate, lang, fiveDaysForecast
       setMaxTemp(parseInt(res.daily[0].temp.max));
       setMinTemp(parseInt(res.daily[0].temp.min));
       setIcon(res.current.weather[0].icon);
-
-      //pegando a previsão dos próximos 5 dias
-      const forcastArray: IFiveDaysForecast[] = [];
-      res.daily.forEach((value: any, i: number) => {
-        if(i > 0 && i <= 5){
-          //console.log(value)
-          const forcast = {
-            dayName: {
-              day: new Date(value.dt * 1000).toLocaleDateString('pt-br',{day: '2-digit'  }),
-              week: new Date(value.dt * 1000).toLocaleDateString('pt-br',{weekday: 'short'}),
-              month: new Date(value.dt * 1000).toLocaleDateString('pt-br',{month: 'short'}),
-          
-            },
-            icon: value.weather[0].icon,
-            dayMax: parseInt(value.temp.max),
-            dayMin: parseInt(value.temp.min),
-            description: value.weather[0].description
-          }
-          forcastArray.push(forcast)
-        }
-      });
-      setFiveDaysForecast(forcastArray);
-      console.log(fiveDaysForecast); 
     }
     getWeather();
   },[unit, lang])

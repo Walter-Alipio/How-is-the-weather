@@ -1,4 +1,4 @@
-import { ICoordinate, ILanguage, IUnit } from "../interfaces/interfaces";
+import { ICoordinate, ILanguage, IUnit } from "../types/interfaces";
 
 
 interface Props {

@@ -1,7 +1,8 @@
 import  brasil  from '../assets/icons/brasil.svg';
 import usa from '../assets/icons/usa.svg';
 import spain from '../assets/icons/spain.svg';
-import { ILanguage } from '../routes';
+import { ILanguage } from '../types/interfaces';
+
 
 interface Props {
   setLang: React.Dispatch<React.SetStateAction<ILanguage>>,
