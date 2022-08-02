@@ -16,32 +16,39 @@ export default function Footer({setLang, lang}: Props){
         <button onClick={()=>setLang({
           language:'Português',
           lang: 'pt_br'
-        })}>
-          <img src={brasil} alt="Português" />
+        })}
+          className='hover:ring-4 shadow-[#D2B3C1] rounded-full'
+        >
+          <img src={brasil} alt="Português" title='Português'/>
         </button>
 
         <button onClick={()=>setLang({
           language:'English',
           lang: 'en'
-        })}>
-          <img src={usa} alt="English" />
+        })}
+          className='hover:ring-4 shadow-[#D2B3C1] rounded-full'
+        >
+          <img src={usa} alt="English" title='English' />
         </button>
 
         <button onClick={()=>setLang({
           language:'Español',
           lang: 'es'
-        })}>
-          <img src={spain} alt="Español" />
+        })}
+          className='hover:ring-4 shadow-[#D2B3C1] rounded-full'
+        >
+          <img src={spain} alt="Español" title='Español' />
         </button>
       </section>
-      {
-        lang.lang === 'pt_br' ? 
-        <p>Idioma selecionado: {lang.language}</p> :
-        lang.lang === 'en' ?
-        <p>Selected language: {lang.language}</p> :
-        <p>Idioma seleccionado: {lang.language}</p>
-
-      }
+      <p className='mt-1'>  
+        {
+          lang.lang === 'pt_br' ? 
+          `Idioma selecionado: ${lang.language}`:
+          lang.lang === 'en' ?
+          `Selected language: ${lang.language}`:
+          `Idioma seleccionado: ${lang.language}`
+        }
+      </p>
     </footer>
   )
 }
