@@ -1,11 +1,49 @@
-import { IFiveDaysForecast } from "../routes";
+import { useEffect } from "react";
+import { ICoordinate, IFiveDaysForecast, ILanguage, IUnit } from "../types/interfaces";
+import { urlAPI } from "../utils/Url";
 
 interface Props{
   city: string; 
-  fiveDaysForecast: IFiveDaysForecast[]
+  unit: IUnit;
+  coordinate: ICoordinate;
+  lang: ILanguage;
+  fiveDaysForecast: IFiveDaysForecast[];
+  setFiveDaysForecast: React.Dispatch<React.SetStateAction<IFiveDaysForecast[]>>
 }
 
-export default function FiveDaysForecast ({ city, fiveDaysForecast }: Props){
+export default function FiveDaysForecast ({ city, fiveDaysForecast, unit,coordinate, lang, setFiveDaysForecast }: Props){
+
+  const url = urlAPI({unit,coordinate,lang});
+
+  useEffect(()=>{
+    const getFiveDaysWeather = async () => {
+      const res = await fetch(url).then(data => data.json()).catch(err=>console.log(err));
+      
+      //pegando a previsão dos próximos 5 dias
+      const forcastArray: IFiveDaysForecast[] = [];
+      res.daily.forEach((value: any, i: number) => {
+        if(i > 0 && i <= 5){
+          //console.log(value)
+          const forcast = {
+            dayName: {
+              day: new Date(value.dt * 1000).toLocaleDateString(lang.lang === 'pt_br'? 'pt-br': lang.lang,{day: '2-digit'  }),
+              week: new Date(value.dt * 1000).toLocaleDateString(lang.lang === 'pt_br'? 'pt-br': lang.lang,{weekday: 'short'}),
+              month: new Date(value.dt * 1000).toLocaleDateString(lang.lang === 'pt_br'? 'pt-br': lang.lang,{month: 'short'}),
+          
+            },
+            icon: value.weather[0].icon,
+            dayMax: parseInt(value.temp.max),
+            dayMin: parseInt(value.temp.min),
+            description: value.weather[0].description
+          }
+          forcastArray.push(forcast)
+        }
+      });
+      setFiveDaysForecast(forcastArray);
+      console.log(fiveDaysForecast); 
+    }
+    getFiveDaysWeather();
+  },[unit,lang])
   return (
     <section className="flex flex-col items-center gap-1 max-w-[44.375rem] text-white">
       <h1 className="font-bold text-4xl text-center uppercase md:text-5xl">{city}</h1>
