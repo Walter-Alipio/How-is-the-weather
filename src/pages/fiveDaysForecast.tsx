@@ -47,7 +47,12 @@ export default function FiveDaysForecast ({ city, fiveDaysForecast, unit,coordin
   return (
     <section className="flex flex-col items-center gap-1 max-w-[44.375rem] text-white">
       <h1 className="font-bold text-4xl text-center uppercase md:text-5xl">{city}</h1>
-      <p className="text-center">Previsão para 5 dias</p>
+      <p className="text-center">
+        { lang.lang === 'pt_br'? 'Previsão para os próximos 5 dias':
+        lang.lang === 'en'? 'Forecast for the next 5 days' :
+        'Pronóstico para los próximos 5 días'
+      }
+      </p>
       <ul className="w-full">
         {fiveDaysForecast.map((day, i) =>(
           <li key={i} className="flex gap-2 items-center justify-between">

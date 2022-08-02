@@ -2,10 +2,9 @@ import { useState } from 'react';
 import { useNavigate }  from 'react-router-dom';
 import PlacesAutocomplete, {
   geocodeByAddress,
-  geocodeByPlaceId,
   getLatLng,
 } from 'react-places-autocomplete';
-import { ICoordinate, ILanguage } from '../routes';
+import { ICoordinate, ILanguage } from '../types/interfaces';
 
 interface Props {
   setCity: React.Dispatch<React.SetStateAction<string>>,
@@ -20,16 +19,7 @@ interface Props {
 export default function Home({ setCity, coordinate, setCoordinate, lang }: Props){
   const navigate = useNavigate();
   const [address, setAddress] = useState('');
-  const [error, setError] = useState('')
- 
-
-  //inserindo script com url da api google 
-  // const API_KEY = import.meta.env.VITE_GOOGLE_URL;
-  // console.log(API_KEY)
-  // const script = document.createElement('script'); 
-  // script.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`; 
-  // document.head.append(script);
-
+  const [error, setError] = useState('');
 
   const handleSelect = async (value: string) => {
     const result = await geocodeByAddress(value);
@@ -53,13 +43,14 @@ export default function Home({ setCity, coordinate, setCoordinate, lang }: Props
 
   return(
     <section className="flex flex-col items-center gap-5 max-w-[44375rem]">
-      {
-        lang.lang === 'pt_br' ?
-        <h1 className="text-white font-bold text-3xl md:text-[2.6875rem] text-center">Como está o tempo hoje?</h1>:
-        lang.lang === 'en'?
-        <h1 className="text-white font-bold text-3xl md:text-[2.6875rem] text-center">How is the weather today?</h1>:
-        <h1 className="text-white font-bold text-3xl md:text-[2.6875rem] text-center">¿Cómo está el clima hoy?</h1>
-      }
+
+      <h1 className="text-white font-bold text-3xl md:text-[2.6875rem] text-center">
+        {
+          lang.lang === 'pt_br' ?"Como está o tempo hoje?":
+          lang.lang === 'en'? "How is the weather today?":
+          "¿Cómo está el clima hoy?"
+        }
+      </h1>
       <PlacesAutocomplete
         value={address}
         onChange={setAddress}

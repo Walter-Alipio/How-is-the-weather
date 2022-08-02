@@ -57,7 +57,10 @@ export default function Weather({ city, unit, coordinate, lang }: Props){
       </div>
       <Link to={'/5dias'}
         className="text-center underline underline-offset-2"
-      >Ver previsão para os próximos 5 dias</Link>
+      >{ lang.lang === 'pt_br'? 'Ver previsão para os próximos 5 dias':
+        lang.lang === 'en'? 'See forecast for the next 5 days' :
+        'Ver previsión para los próximos 5 días'
+      }</Link>
     </section>
   )
 }
