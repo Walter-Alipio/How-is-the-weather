@@ -13,5 +13,5 @@ export function urlAPI({unit, coordinate,lang}: Props){
   const language = lang.lang;
   const API_KEY = import.meta.env.VITE_WEATHER_KEY;
 
-  return `http://api.openweathermap.org/data/3.0/onecall?lat=${coordinate.lat}&lon=${coordinate.lng}&units=${units}&appid=${API_KEY}&lang=${language}`
+  return `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinate.lat}&lon=${coordinate.lng}&units=${units}&appid=${API_KEY}&lang=${language}`
 }
