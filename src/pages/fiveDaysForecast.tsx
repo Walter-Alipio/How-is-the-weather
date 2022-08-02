@@ -53,7 +53,7 @@ export default function FiveDaysForecast ({ city, fiveDaysForecast, unit,coordin
         'Pronóstico para los próximos 5 días'
       }
       </p>
-      <ul className="w-full">
+      <ul className="w-full flex flex-col gap-4">
         {fiveDaysForecast.map((day, i) =>(
           <li key={i} 
             className="flex gap-2 items-center justify-between md:grid md:grid-cols-listWeather auto-cols-fr md:justify-center md:gap-8"
