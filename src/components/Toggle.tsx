@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IUnit } from "../routes";
+import { IUnit } from "../types/interfaces";
 
 interface Props {
    setUnit:  React.Dispatch<React.SetStateAction<IUnit>>
