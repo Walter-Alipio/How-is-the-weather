@@ -18,7 +18,7 @@ export default function Header({setUnit}: Props){
   <header className={`h-11 flex px-5 pt-5 justify-between flex-row-reverse`}
   
   >
-    { pathname === '/clima' ? 
+    { pathname !== '/' ? 
       <button 
         onClick={()=> navigate(-1)}
         arial-label='Voltar'
