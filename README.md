@@ -43,8 +43,13 @@ O intuito desse desafio é identificar o clima da cidade pesquisada através do 
 
 ### Como rodar o projeto
 
-`npm install`
-`npm run dev`
+`npm install`<br>
+`npm run dev`<br>
+`<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>`<br>
+
+YOUR_API_KEY deve ser substituído por sua chave da [API Google](https://developers.google.com/maps/documentation/javascript/places-autocomplete)<br>
+
+<p>Preencha o arquivo .env conforme o exemplo</p>
 
 #
 
