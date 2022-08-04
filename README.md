@@ -52,6 +52,8 @@ O intuito desse desafio é identificar o clima da cidade pesquisada através do 
 
 <p>Reactjs | Tailwindcss | Typescript</p>
 
+#
+
 ### Deploy
 
 [Como está o tempo hoje?](https://desafio-pratico-letras.vercel.app/)
