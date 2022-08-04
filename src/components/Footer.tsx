@@ -7,11 +7,11 @@ import { ILanguage } from '../types/interfaces';
 interface Props {
   setLang: React.Dispatch<React.SetStateAction<ILanguage>>,
   lang: ILanguage
-}
+};
 
 export default function Footer({setLang, lang}: Props){
   return(
-    <footer className="w-full flex flex-col items-center bottom-0 pb-6 text-white">
+    <footer className='w-full flex flex-col items-center bottom-0 pb-6 text-white'>
       <section className='flex items-center gap-3'>
         <button onClick={()=>setLang({
           language:'Português',
@@ -19,7 +19,7 @@ export default function Footer({setLang, lang}: Props){
         })}
           className='hover:ring-4 shadow-[#D2B3C1] rounded-full'
         >
-          <img src={brasil} alt="Português" title='Português'/>
+          <img src={brasil} alt='Português' title='Português'/>
         </button>
 
         <button onClick={()=>setLang({
@@ -28,7 +28,7 @@ export default function Footer({setLang, lang}: Props){
         })}
           className='hover:ring-4 shadow-[#D2B3C1] rounded-full'
         >
-          <img src={usa} alt="English" title='English' />
+          <img src={usa} alt='English' title='English' />
         </button>
 
         <button onClick={()=>setLang({
@@ -50,5 +50,5 @@ export default function Footer({setLang, lang}: Props){
         }
       </p>
     </footer>
-  )
-}
+  );
+};

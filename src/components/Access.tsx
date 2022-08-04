@@ -1,13 +1,13 @@
-import { Outlet } from "react-router-dom";
-import { ILanguage, IUnit } from "../types/interfaces";
-import Footer from "./Footer";
+import { Outlet } from 'react-router-dom';
+import { ILanguage, IUnit } from '../types/interfaces';
+import Footer from './Footer';
 import Header from './Header'
 
 interface Props {
    setUnit:  React.Dispatch<React.SetStateAction<IUnit>>,
    setLang: React.Dispatch<React.SetStateAction<ILanguage>>,
    lang: ILanguage
-}
+};
 
 export default function AccessPage({setUnit, setLang, lang}: Props){
   return (
@@ -19,4 +19,4 @@ export default function AccessPage({setUnit, setLang, lang}: Props){
       <Footer setLang={setLang} lang={lang}/>
     </>
   );
-}
+};

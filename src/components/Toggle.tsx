@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { IUnit } from "../types/interfaces";
+import { useState } from 'react';
+import { IUnit } from '../types/interfaces';
 
 interface Props {
    setUnit:  React.Dispatch<React.SetStateAction<IUnit>>
-}
+};
 
 export default function Toggle({setUnit}: Props){
   const [ check, setCheck ] = useState(false);
@@ -11,10 +11,10 @@ export default function Toggle({setUnit}: Props){
   const handleCheck = () => {
     setCheck(prevState => !prevState);
     check ? setUnit({unit:'imperial'}) : setUnit({unit:'metric'});
-  }
+  };
 
   return (
-    <div className="flex items-center text-white gap-2">
+    <div className='flex items-center text-white gap-2'>
       <span>°F</span>
       <label className={`w-10 h-6  ${!check? 'bg-toggleBG' : 'bg-[#D2B3C1]'} rounded-full flex items-center justify-center relative transition-colors`} >
         <input type="checkbox" name="toggle" id="toggle" 
@@ -27,5 +27,5 @@ export default function Toggle({setUnit}: Props){
       </label>
       <span>°C</span>
     </div>
-  )
-}
+  );
+};

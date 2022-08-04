@@ -14,7 +14,7 @@ export default function AppRoutes(){
   const [lang, setLang] = useState<ILanguage>({
     language: 'Português',
     lang: 'pt_br'
-  })
+  });
   const [coordinate, setCoordinate] = useState<ICoordinate>({
     lat: 0,
     lng: 0
@@ -59,5 +59,5 @@ export default function AppRoutes(){
       </Routes>
  
     </BrowserRouter>
-  )
-}
+  );
+};

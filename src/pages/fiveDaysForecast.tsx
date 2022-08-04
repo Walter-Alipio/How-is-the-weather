@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import { ICoordinate, IFiveDaysForecast, ILanguage, IUnit } from "../types/interfaces";
-import { urlAPI } from "../utils/Url";
+import { useEffect } from 'react';
+import { ICoordinate, IFiveDaysForecast, ILanguage, IUnit } from '../types/interfaces';
+import { urlAPI } from '../utils/Url';
 
 interface Props{
   city: string; 
@@ -9,7 +9,7 @@ interface Props{
   lang: ILanguage;
   fiveDaysForecast: IFiveDaysForecast[];
   setFiveDaysForecast: React.Dispatch<React.SetStateAction<IFiveDaysForecast[]>>
-}
+};
 
 export default function FiveDaysForecast ({ city, fiveDaysForecast, unit,coordinate, lang, setFiveDaysForecast }: Props){
 
@@ -23,7 +23,7 @@ export default function FiveDaysForecast ({ city, fiveDaysForecast, unit,coordin
       const forcastArray: IFiveDaysForecast[] = [];
       res.daily.forEach((value: any, i: number) => {
         if(i > 0 && i <= 5){
-          //console.log(value)
+          //console.log(value);
           const forcast = {
             dayName: {
               day: new Date(value.dt * 1000).toLocaleDateString(lang.lang === 'pt_br'? 'pt-br': lang.lang,{day: '2-digit'  }),
@@ -36,51 +36,51 @@ export default function FiveDaysForecast ({ city, fiveDaysForecast, unit,coordin
             dayMin: parseInt(value.temp.min),
             description: value.weather[0].description
           }
-          forcastArray.push(forcast)
+          forcastArray.push(forcast);
         }
       });
       setFiveDaysForecast(forcastArray);
       //console.log(fiveDaysForecast); 
     }
     getFiveDaysWeather();
-  },[unit,lang])
+  },[unit,lang]);
   return (
-    <section className="flex flex-col items-center gap-1  text-white">
-      <h1 className="font-bold text-4xl text-center uppercase md:text-5xl">{city}</h1>
-      <p className="text-center mb-24">
+    <section className='flex flex-col items-center gap-1  text-white'>
+      <h1 className='font-bold text-4xl text-center uppercase md:text-5xl'>{city}</h1>
+      <p className='text-center mb-24'>
         { lang.lang === 'pt_br'? 'Previsão para os próximos 5 dias':
         lang.lang === 'en'? 'Forecast for the next 5 days' :
         'Pronóstico para los próximos 5 días'
       }
       </p>
-      <ul className="w-full flex flex-col gap-4">
+      <ul className='w-full flex flex-col gap-4'>
         {fiveDaysForecast.map((day, i) =>(
           <li key={i} 
-            className="flex gap-2 items-center justify-between md:grid md:grid-cols-listWeather auto-cols-fr md:justify-center md:gap-8"
+            className='flex gap-2 items-center justify-between md:grid md:grid-cols-listWeather auto-cols-fr md:justify-center md:gap-8'
           >
-            <p className="first-letter:uppercase font-bold md:text-xl">
+            <p className='first-letter:uppercase font-bold md:text-xl'>
               {
                 `${day.dayName.week.replace('.','')},
-                ${day.dayName.day} 
-                ${
+                 ${day.dayName.day} 
+                 ${
                   day.dayName.month.split('').map((element, i) => {
                     if(i !== 0) 
                       return element
                     
-                    return element.toUpperCase()                  
+                    return element.toUpperCase();                  
                   }).join('').replace('.','')
                 }`
               }</p>
-              <img src={`https://openweathermap.org/img/wn/${day.icon}@2x.png`} alt="" 
-                className="w-5 h-5 md:w-10 md:h-10"
+              <img src={`https://openweathermap.org/img/wn/${day.icon}@2x.png`} alt={day.description} 
+                className='w-5 h-5 md:w-10 md:h-10'
               />
               <span>{`${day.dayMin}°`}</span>
-              <span className="bg-line bg-no-repeat bg-cover w-24 h-1 md:w-32"></span>
+              <span className='bg-line bg-no-repeat bg-cover w-24 h-1 md:w-32'></span>
               <span>{`${day.dayMax}°`}</span>
-              <span className="hidden md:block">{`${day.description}`}</span>
+              <span className='hidden md:block'>{`${day.description}`}</span>
           </li>
         ))}
       </ul>
     </section>
-  )
-}
+  );
+};

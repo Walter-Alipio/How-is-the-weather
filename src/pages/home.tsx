@@ -14,7 +14,7 @@ interface Props {
   },
   setCoordinate: React.Dispatch<React.SetStateAction<ICoordinate>>,
   lang: ILanguage
-}
+};
 
 export default function Home({ setCity, coordinate, setCoordinate, lang }: Props){
   const navigate = useNavigate();
@@ -24,6 +24,7 @@ export default function Home({ setCity, coordinate, setCoordinate, lang }: Props
   const handleSelect = async (value: string) => {
     const result = await geocodeByAddress(value);
     const latlng = await getLatLng(result[0]);
+    
     setAddress(value.split(',')[0]);
     setCoordinate(latlng);
 
@@ -34,17 +35,17 @@ export default function Home({ setCity, coordinate, setCoordinate, lang }: Props
 
   const onError = (status: string, clearSuggestions: Function) => {
   console.log('Google Maps API returned error with status: ', status);
-  setError(`Ocorreu um erro com sua busca: ${status}`)
-  clearSuggestions()
-  }
+  setError(`Ocorreu um erro com sua busca: ${status}`);
+  clearSuggestions();
+  };
 
-  const placeholder = lang.lang === 'pt_br' ? "Digite o nome da cidade" :
-    lang.lang === 'en' ? "Enter the city name" : "Introduzca el nombre de la ciudad" ;
+  const placeholder = lang.lang === 'pt_br' ? 'Digite o nome da cidade' :
+    lang.lang === 'en' ? 'Enter the city name' : 'Introduzca el nombre de la ciudad' ;
 
   return(
-    <section className="flex flex-col items-center gap-5 max-w-[44.375rem]">
+    <section className='flex flex-col items-center gap-5 max-w-[44.375rem]'>
 
-      <h1 className="text-white font-bold text-3xl md:text-[2.6875rem] text-center">
+      <h1 className='text-white font-bold text-3xl md:text-[2.6875rem] text-center'>
         {
           lang.lang === 'pt_br' ?"Como está o tempo hoje?":
           lang.lang === 'en'? "How is the weather today?":
@@ -70,7 +71,7 @@ export default function Home({ setCity, coordinate, setCoordinate, lang }: Props
             <input {...getInputProps(
               {
                 placeholder: placeholder,
-                className:"w-full h-12 rounded-xl p-4 placeholder:text-placeholder text-placeholder outline-none bg-input"
+                className:'w-full h-12 rounded-xl p-4 placeholder:text-placeholder text-placeholder outline-none bg-input'
               }
             )} />
             <div className={`absolute w-full rounded-b-xl top-9 bg-input border-t-2 border-inherit shadow-shadowDropDown ${suggestions.length > 0 ? 'block': 'hidden'}`}>
@@ -94,5 +95,5 @@ export default function Home({ setCity, coordinate, setCoordinate, lang }: Props
       </PlacesAutocomplete>
       <p className='text-red-600 font-semibold'>{error}</p>
     </section>
-  )
-}
+  );
+};
